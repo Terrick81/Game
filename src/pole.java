@@ -4,26 +4,30 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 class pole extends JPanel {
-    int x = 400;
-    int y = 1080-531;
-    int score = 0;
-    int Height_R;
-    int Width_R;
-    int speed = 10;
-    byte life = 3;
-    int difficult;
-    object[] gameObject = new object[10];
-    int col_Img = 15;
-    Image[] Images = new Image[col_Img];
-    int firelevel = 9;
+    private int x = 400;
+    private int y = 1080-531;
+    private int score = 0;
+    private int Height_R;
+    private int Width_R;
+    private int speed = 10;
+    private byte life = 3;
+    private int difficult;
+    private object[] gameObject = new object[10];
+    private int col_Img = 15;
+    private Image[] Images = new Image[col_Img];
+    private int firelevel = 9;
 
-    byte shild = 0;
-    byte timespeed = 0;
-    byte cooldown_speed = random(5,15);
-    byte cooldown_shild = random(5,15);
-    byte cooldown_repair = random(5,15);
+    private byte shild = 0;
+    private byte timespeed = 0;
+    private byte cooldown_speed = random(5,15);
+    private byte cooldown_shild = random(5,15);
+    private byte cooldown_repair = random(5,15);
     Timer timerUpdate, timerDraw, helpers_timer;
-    public pole (int difficult){
+
+    public int getX() { return this.x;}
+    public int getSpeed() {return this.speed;}
+
+    public pole (int difficult) {
         this.difficult = difficult;
 
         helpers_timer = new Timer(1000, new ActionListener() {
@@ -56,7 +60,7 @@ class pole extends JPanel {
         timerDraw.start();
         for (int i = 0; i < 10; i++){
             try{
-                gameObject[i] = new object(ImageIO.read(new File("C:\\users\\Terre\\IdeaProjects\\game_1\\images\\" + i + ".png")), difficult);
+                gameObject[i] = new object(ImageIO.read(new File("images\\" + i + ".png")), difficult);
             }
             catch (IOException exp){
                 System.out.println("одна из картинок не загрузилась");
@@ -64,12 +68,16 @@ class pole extends JPanel {
         }
         for (int i = 0; i < col_Img; i++){
             try{
-                Images[i] = ImageIO.read(new File("C:\\users\\Terre\\IdeaProjects\\game_1\\images\\1" + i + ".png"));
+                Images[i] = ImageIO.read(new File("images\\1" + i + ".png"));
+
             }
             catch (IOException exp){System.out.println("одна из картинок не загрузилась!");}
         }
-        Height_R = Images[6].getHeight(null);
-        Width_R = Images[6].getWidth(null);
+        try{
+            Height_R = Images[6].getHeight(null);
+            Width_R = Images[6].getWidth(null);
+        }
+        catch (Exception e){System.out.println("не получилось смаштабировато");}
     }
 
     public void paintComponent(Graphics gr) // Метод, который рисует содержимое панели окна
