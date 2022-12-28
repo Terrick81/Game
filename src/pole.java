@@ -3,13 +3,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-class pole extends JPanel {
-    private int x = 400;
-    private int y = 1080-531;
+public class pole extends JPanel {
+    public int x = 400;
+    public int y = 1080-531;
     private int score = 0;
     private int Height_R;
     private int Width_R;
-    private int speed = 10;
+    public int speed = 10;
     private byte life = 3;
     private int difficult;
     private object[] gameObject = new object[10];
@@ -24,8 +24,6 @@ class pole extends JPanel {
     private byte cooldown_repair = random(5,15);
     Timer timerUpdate, timerDraw, helpers_timer;
 
-    public int getX() { return this.x;}
-    public int getSpeed() {return this.speed;}
 
     public pole (int difficult) {
         this.difficult = difficult;
@@ -40,9 +38,10 @@ class pole extends JPanel {
                 if (cooldown_repair > 0) cooldown_repair--;
             }
         });
+
         helpers_timer.start();
 
-        timerUpdate = new Timer(2200-200*difficult, new ActionListener() {
+        timerUpdate = new Timer(2200 - 200 * difficult, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 updateStart();
                 score += difficult/2;
@@ -66,13 +65,13 @@ class pole extends JPanel {
                 System.out.println("одна из картинок не загрузилась");
             }
         }
-        for (int i = 0; i < col_Img; i++){
-            try{
-                Images[i] = ImageIO.read(new File("images\\1" + i + ".png"));
-
-            }
-            catch (IOException exp){System.out.println("одна из картинок не загрузилась!");}
-        }
+        //for (int i = 0; i < col_Img; i++){
+        //    try{
+        //        Images[i] = ImageIO.read(new File("images\\" + i + ".png"));
+//
+        //    }
+        //    catch (IOException exp){System.out.println("одffffffffна из картинок не загрузилась!");}
+        //}
         try{
             Height_R = Images[6].getHeight(null);
             Width_R = Images[6].getWidth(null);
@@ -126,7 +125,7 @@ class pole extends JPanel {
         //gr.drawString("speed: " + speed, 10, 100);
         if (shild > 0){
             gr.drawImage(Images[5], x-30, y-30,  null);
-            gr.drawString("shild: " + shild, x-10, y-40);
+            gr.drawString("shield: " + shild, x-10, y-40);
         }
         if (timespeed > 0) gr.drawString("boost: " + timespeed, x-10, y-50);
     }
@@ -159,6 +158,3 @@ class pole extends JPanel {
         return (byte)(Math.random() * (max - min + 1) + min);
     }
 }
-
-
-

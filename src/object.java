@@ -4,9 +4,12 @@ import java.awt.event.*;
 
 class object {
     public Image img;
-    int x,y, Width, Height;
+    public int x;
+    public int y;
+    public int Width;
+    public int Height;
     double scale;
-    int speed = 6;
+    public int speed = 6;
     Boolean act;
     private Timer timerUpdate;
     object(Image img, int difficult) {
