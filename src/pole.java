@@ -77,7 +77,7 @@ class pole extends JPanel {
             Height_R = Images[6].getHeight(null);
             Width_R = Images[6].getWidth(null);
         }
-        catch (Exception e){System.out.println("не получилось смаштабировато");}
+        catch (Exception e){System.out.println("не получилось масштабировать");}
     }
 
     public void paintComponent(Graphics gr) // Метод, который рисует содержимое панели окна
